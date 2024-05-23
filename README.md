@@ -1,4 +1,4 @@
-# HA-CinemaTime
+# HA-Chrome Tab Tracker
 
 This is a browser extension to automate things on Homeassistant when you have a specific tab being displayed on your browser. I use it to help do personal time tracking at work.
 
