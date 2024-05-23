@@ -32,7 +32,6 @@ async function checkTabs() {
   const haEntityURL = `${host}/api/states/${device}`;
   console.debug(`Sending request to ${haEntityURL}`);
   const activeTab = await getCurrentTab();
-  activeTab?.windowId
   const url = activeTab?.url ? new URL(activeTab.url) : null;
   console.debug(`Active tab: ${url?.host ?? 'NO ACTIVE TAB URL'}`);
 
