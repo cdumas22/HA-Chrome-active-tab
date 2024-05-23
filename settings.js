@@ -1,24 +1,27 @@
 const SETTINGS_KEY = "HATABS_SETTINGS";
-function loadSettings() {
-  return JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+async function getSettings() {
+  const settings = await chrome.storage.local.get(SETTINGS_KEY);
+  return /** @type {import("./types.d.ts").Settings} */(settings[SETTINGS_KEY]);
 }
 
-function saveSettings() {
+async function saveSettings() {
   const settings = getSettingsFromDOM();
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  await chrome.storage.local.set({[SETTINGS_KEY]: settings});
 }
 
 function getSettingsFromDOM() {
+  /** @type {import("./types.d.ts").Settings} */
   const settings = {};
-  for (let k of ["host", "apikey", "device", "sites"]) {
+  /** @type {Array<keyof import("./types.d.ts").Settings>} */
+  const keys = ['host', 'apiKey', 'device'];
+  for (let k of keys) {
     settings[k] = document.getElementById(k)?.value;
   }
   return settings;
 }
 
-function setSettingsToDOM() {
-  const settings = loadSettings();
-  console.log(settings);
+async function setSettingsToDOM() {
+  const settings = await getSettings();
   for (let k of Object.keys(settings)) {
     document.getElementById(k).value = settings[k];
   }

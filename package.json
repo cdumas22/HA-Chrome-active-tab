@@ -1,9 +1,9 @@
 {
-  "name": "ha-firefox",
+  "name": "ha-cinematime",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "webextension-polyfill": "^0.8.0"
+    "@types/chrome": "^0.0.268"
   }
 }
